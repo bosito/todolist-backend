@@ -35,7 +35,7 @@ const getTaskById = async (id) => {
 const addTasks = async (taskObj) => {
     try {
 
-        console.log('taskObj -->', taskObj);
+        //console.log('taskObj -->', taskObj);
 
         const listAllTasks = await getTasks();
 
@@ -62,16 +62,11 @@ const addTasks = async (taskObj) => {
 const updateTask = async (id, taskObj) => {
     try {
 
-        console.log('id -->', id);
-        console.log('taskObj -->', taskObj);
-
         const listAllTasks = await getTasks();
 
         const indexObj = listAllTasks.findIndex((task)=>task.id === id);
 
         listAllTasks.splice(indexObj,1,taskObj);
-
-        console.log('listAllTasks -->', listAllTasks);
 
         await fs.writeFile(TODOLIST_PATH, JSON.stringify(listAllTasks));
 

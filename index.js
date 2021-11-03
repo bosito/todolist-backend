@@ -12,8 +12,8 @@ http.createServer(async (request, response) => {
     response.setHeader('Allow', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
 
 
-    console.log('metod otro -->', request.method);
-    console.log('url metod -->', request.url);
+    //console.log('metod otro -->', request.method);
+    //console.log('url metod -->', request.url);
 
     if (request.method === "OPTIONS") {
         response.statusCode = 204;
@@ -124,15 +124,14 @@ http.createServer(async (request, response) => {
                 if (resource === "task") {
 
                     request.on("data", (data) => {
-                        console.log('data -->', data.toString());
+                        //console.log('data -->', data.toString());
                         body += data.toString();
                     });
 
                     request.on("end", async () => { //Finalizo la entrega / envio de datos por parte del cliente 
                         let taskObj = JSON.parse(body);
 
-                        // await addTask(taskObj);
-                        console.log(taskObj);
+                        //await addTask(taskObj);
                         await updateTask(taskObj.id, taskObj);
                         response.writeHead(201, { 'Content-Type': 'application/json' });
                         response.end(JSON.stringify({
